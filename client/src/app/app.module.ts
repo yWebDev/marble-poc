@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TfCoreDemoComponent } from './views/tf-core-demo/tf-core-demo.component';
 import { HomeComponent } from './views/home/home.component';
+import { TfPlotDemoComponent } from './views/tf-plot-demo/tf-plot-demo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TfCoreDemoComponent,
-    HomeComponent
+    HomeComponent,
+    TfPlotDemoComponent
   ],
   imports: [
     BrowserModule,

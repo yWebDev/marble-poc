@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { TfCoreDemoComponent } from './views/tf-core-demo/tf-core-demo.component';
+import { TfPlotDemoComponent } from './views/tf-plot-demo/tf-plot-demo.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'tf-core-demo',
     component: TfCoreDemoComponent
+  },
+  {
+    path: 'tf-plot-demo',
+    component: TfPlotDemoComponent
   }
 ];
 
