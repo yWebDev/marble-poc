@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { TfCoreDemoComponent } from './views/tf-core-demo/tf-core-demo.component';
 import { HomeComponent } from './views/home/home.component';
 import { TfPlotDemoComponent } from './views/tf-plot-demo/tf-plot-demo.component';
+import { TfModelTrainComponent } from './views/tf-model-train/tf-model-train.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TfCoreDemoComponent,
     HomeComponent,
-    TfPlotDemoComponent
+    TfPlotDemoComponent,
+    TfModelTrainComponent
   ],
   imports: [
     BrowserModule,

@@ -15,9 +15,6 @@ export class AppComponent {
 
   private async init(): Promise<void> {
     await tf.ready();
-
-    console.log('Version', tf.version);
-    console.log('Backend', tf.getBackend());
   }
 
   private runTestModel(): void {
