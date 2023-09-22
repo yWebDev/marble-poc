@@ -10,14 +10,11 @@ export class AppComponent {
   result: any;
 
   constructor() {
-    this.init().then(() => this.runTestModel());
+    this.init();
   }
 
   private async init(): Promise<void> {
     await tf.ready();
-
-    console.log('Version', tf.version);
-    console.log('Backend', tf.getBackend());
   }
 
   private runTestModel(): void {
