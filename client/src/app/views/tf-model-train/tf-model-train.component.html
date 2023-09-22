@@ -15,6 +15,9 @@
         <button [disabled]="!model" (click)="predict()">Predict</button>
       </div>
       <div>
+        <button [disabled]="!model" (click)="plotParams(weight, bias)">Plot params</button>
+      </div>
+      <div>
         <button [disabled]="!model" (click)="save()">Save</button>
       </div>
       <div>
@@ -25,6 +28,14 @@
     <p *ngIf="model">
       <label for="predictionValue">Prediction Value</label>
       <input id="predictionValue" name="predictionValue" type="number" [(ngModel)]="predictionValue">
+    </p>
+    <p *ngIf="model">
+      <label for="weight">Weight</label>
+      <input id="weight" name="weight" type="number" [(ngModel)]="weight">
+    </p>
+    <p *ngIf="model">
+      <label for="bias">Bias</label>
+      <input id="bias" name="bias" type="number" [(ngModel)]="bias">
     </p>
   </div>
   <ng-template #trainingTmpl>

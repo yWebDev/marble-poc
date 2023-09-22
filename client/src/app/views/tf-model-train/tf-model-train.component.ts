@@ -22,8 +22,11 @@ export class TfModelTrainComponent implements OnInit {
   model?: tf.LayersModel;
   loss?: string;
   predictionValue?: number;
+  bias?: number;
+  weight?: number;
   isTrainingInProgress = false;
   isLoadingInProgress = false;
+  isModelTrained = false;
 
   ngOnInit() {
     this.tf.init();
@@ -66,10 +69,9 @@ export class TfModelTrainComponent implements OnInit {
 
     if (modelInfo) {
       this.model = await tf.loadLayersModel(this.storageKey);
+      this.isModelTrained = true;
 
-      await this.tf.vis.show.modelSummary({ name: 'Model Summary' }, this.model);
-      const layer = this.model.getLayer('', 0);
-      await this.tf.vis.show.layer({ name: 'Layer 1' }, layer);
+      await this.train();
     } else {
       alert('Could not load: no saved model found');
     }
@@ -133,7 +135,9 @@ export class TfModelTrainComponent implements OnInit {
     this.testingFeatures = testingFeatures;
     this.testingLabels = testingLabels;
 
-    await this.trainModel(this.model, trainingFeatures, trainingLabels);
+    if (!this.isModelTrained) {
+      await this.trainModel(this.model, trainingFeatures, trainingLabels);
+    }
 
     this.isTrainingInProgress = false;
   }
@@ -155,13 +159,21 @@ export class TfModelTrainComponent implements OnInit {
       this.model = model;
     }
 
-    // Layer 2
-    // model.add(this.tf.core.layers.dense({
-    //   inputDim: 1,
-    //   units: 3,
-    //   activation: 'linear',
-    //   useBias: false,
-    // }));
+    //Layer 2
+    (this.model as tf.Sequential).add(this.tf.core.layers.dense({
+      inputDim: 1,
+      units: 10,
+      activation: 'sigmoid',
+      useBias: true,
+    }));
+
+    //Layer 3
+    (this.model as tf.Sequential).add(this.tf.core.layers.dense({
+      inputDim: 1,
+      units: 1,
+      activation: 'sigmoid',
+      useBias: true,
+    }));
 
     const optimizer = this.tf.core.train.sgd(0.1);
     this.model.compile({
@@ -176,7 +188,7 @@ export class TfModelTrainComponent implements OnInit {
       ['loss']);
 
     return model.fit(trainingFeatureTensor, trainingLabelTensor, {
-      batchSize: 1000,
+      batchSize: 500,
       epochs: 10,
       shuffle: true,
       validationSplit: 0.2,
@@ -249,5 +261,15 @@ export class TfModelTrainComponent implements OnInit {
     });
 
     await this.plot(this.points, "Square feet", predictedPoints);
+  }
+
+  async plotParams(weight: number = -10, bias: number = 5): Promise<void> {
+    this.model!.getLayer('', 0).setWeights([
+      tf.tensor2d([[weight]]), // Kernel (input multiplier)
+      tf.tensor1d([bias]), // Bias
+    ])
+    await this.plotPredictionLine();
+    const layer = this.model!.getLayer('', 0);
+    await tfvis.show.layer({ name: "Layer 1" }, layer);
   }
 }
