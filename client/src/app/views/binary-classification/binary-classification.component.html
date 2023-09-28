@@ -1,0 +1,40 @@
+<section style="margin-top: 3rem;">
+  <div *ngIf="!isTrainingInProgress && !isLoadingInProgress; else trainingTmpl">
+    <div
+      style="display: flex; width: 20vw; justify-content: space-between">
+      <div>
+        <button (click)="toggleVisor()">Toggle Visor</button>
+      </div>
+      <div>
+        <button (click)="train()">Train</button>
+      </div>
+      <div>
+        <button [disabled]="!model" (click)="test()">Test</button>
+      </div>
+      <div>
+        <button [disabled]="!model" (click)="predict()">Predict</button>
+      </div>
+      <div>
+        <button [disabled]="!model" (click)="save()">Save</button>
+      </div>
+      <div>
+        <button (click)="load()">Load</button>
+      </div>
+    </div>
+    <p *ngIf="loss">Testing loss: {{ loss }}</p>
+    <div *ngIf="model">
+      <p>Prediction</p>
+      <label for="squareFeet">Square Feet</label>
+      <input id="squareFeet" name="squareFeet" type="number" [(ngModel)]="squareFeet">
+      <label for="price">Price</label>
+      <input id="price" name="price" type="number" [(ngModel)]="price">
+      <p>Prediction Output</p>
+      <p><strong id="prediction-output">{{ predictionOutput }}%</strong></p>
+    </div>
+  </div>
+  <ng-template #trainingTmpl>
+    Model is processing...
+  </ng-template>
+</section>
+
+

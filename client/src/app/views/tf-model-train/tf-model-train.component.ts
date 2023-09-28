@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { isNaN, model } from '@tensorflow/tfjs';
 import * as tf from '@tensorflow/tfjs';
 import * as tfvis from '@tensorflow/tfjs-vis';
 import { TfService } from '../../services/tf.service';

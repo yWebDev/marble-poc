@@ -8,6 +8,7 @@ import { TfCoreDemoComponent } from './views/tf-core-demo/tf-core-demo.component
 import { HomeComponent } from './views/home/home.component';
 import { TfPlotDemoComponent } from './views/tf-plot-demo/tf-plot-demo.component';
 import { TfModelTrainComponent } from './views/tf-model-train/tf-model-train.component';
+import { BinaryClassificationComponent } from './views/binary-classification/binary-classification.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TfModelTrainComponent } from './views/tf-model-train/tf-model-train.com
     TfCoreDemoComponent,
     HomeComponent,
     TfPlotDemoComponent,
-    TfModelTrainComponent
+    TfModelTrainComponent,
+    BinaryClassificationComponent
   ],
   imports: [
     BrowserModule,
