@@ -10,6 +10,7 @@ import { TfPlotDemoComponent } from './views/tf-plot-demo/tf-plot-demo.component
 import { TfModelTrainComponent } from './views/tf-model-train/tf-model-train.component';
 import { BinaryClassificationComponent } from './views/binary-classification/binary-classification.component';
 import { MultiClassificationComponent } from './views/multi-classification/multi-classification.component';
+import { RecognizingDigitsComponent } from './views/recognizing-digits/recognizing-digits.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MultiClassificationComponent } from './views/multi-classification/multi
     TfPlotDemoComponent,
     TfModelTrainComponent,
     BinaryClassificationComponent,
-    MultiClassificationComponent
+    MultiClassificationComponent,
+    RecognizingDigitsComponent
   ],
   imports: [
     BrowserModule,
